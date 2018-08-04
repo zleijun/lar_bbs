@@ -19,7 +19,8 @@ class VerificationCodesController extends Controller
             //     'content'  =>  "【Lbbs社区】您的验证码是{$code}。如非本人操作，请忽略本短信"
             // ]);
             
-            // 发送短信
+            // 发送短信(没有做短信验证码发送，所以直接返回code)
+            
         	
         } catch (\Overtrue\EasySms\Exceptions\NoGatewayAvailableException $exception) {
             $message = $exception->getException('yunpian')->getMessage();
@@ -33,6 +34,7 @@ class VerificationCodesController extends Controller
 
         return $this->response->array([
             'key' => $key,
+            'codes'=>$code,
             'expired_at' => $expiredAt->toDateTimeString(),
         ])->setStatusCode(201);
     }
