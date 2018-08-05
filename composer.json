@@ -18,7 +18,8 @@
         "phpunit/phpunit": "^7.0",
         "dingo/api":"v2.0.0-alpha2",
         "barryvdh/laravel-debugbar":"v3.1.5",
-        "gregwar/captcha":"v1.1.6"
+        "gregwar/captcha":"v1.1.6",
+        "socialiteproviders/weixin":"v4.0.2"
     },
     "autoload": {
         "classmap": [
