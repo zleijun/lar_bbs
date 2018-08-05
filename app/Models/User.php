@@ -2,9 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Auth;
+use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\SoftDeletes;
-class User extends Model
+
+class User extends Authenticatable implements JWTSubject
 {
     use SoftDeletes;
 	//此为填充,表示哪些数据可添加到数据可
@@ -15,4 +20,14 @@ class User extends Model
 	// protected $dateFormat = 'U';
 	//表示这些字段存时间戳的
 	protected $dates = ['created_at','updated_at','deleted_at'];
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
 }
