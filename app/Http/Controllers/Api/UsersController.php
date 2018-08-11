@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\Api\UserRequest;
-
+use App\Transformers\UserTransformer;
 class UsersController extends Controller
 {
 	/**
@@ -40,9 +40,11 @@ class UsersController extends Controller
         }else{
 	        return $this->response->error('操作失败,请重试!', 422);
         }
-
         
+    }
 
-        
+    public function me()
+    {
+        return $this->response->item($this->user(), new UserTransformer());
     }
 }
